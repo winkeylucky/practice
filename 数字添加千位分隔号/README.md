@@ -5,9 +5,9 @@
 ```js
 function addDelimiter(str) {
 	var str = String(str);
-	for(var i = str.length - 1, j = 0, res = []; i >= 0; i--, j++) {
-		if( j > 0 && j%3 === 0 ) res.unshift(',');
-		res.unshift( str.charAt(i) );
+	for(var len = str.length - 1, i = 0, res = []; i <= len; i++) {
+		if( i > 0 && i%3 === 0 ) res.unshift(',');
+		res.unshift( str.charAt(len - i) );
 	}
 	return res.join('');
 }
