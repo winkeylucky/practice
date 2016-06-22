@@ -1,8 +1,5 @@
 
-优雅地实现一些常见算法题
-
-这里就用相对优雅点的方式把经常遇到的问题重写一遍
-
+常见算法题:
 
 * [操作cookie](https://github.com/flfwzgl/practice/blob/master/%E6%93%8D%E4%BD%9Ccookie/cookie.js)
 	* cookie增删改查
