@@ -4,4 +4,11 @@
 这里就用相对优雅点的方式把经常遇到的问题重写一遍
 
 
+[操作cookie](https://github.com/flfwzgl/practice/blob/master/%E6%93%8D%E4%BD%9Ccookie/cookie.js)
+[大数运算](https://github.com/flfwzgl/practice/blob/master/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%97/README.md)
+
+
+
+
+
 
