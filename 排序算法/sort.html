@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>冒泡排序可视化</title>
+	<style>
+		body{margin: 0; padding: 0;}
+		#stage{
+			width: 500px; height: 300px; background-color: #eee; margin: 20px auto; position: relative;
+		}
+		#stage div{
+			position: absolute; bottom: 0; background: #6cf; color: #fff; text-align: center; font-family: arial;
+		}
+	</style>
+</head>
+<body>
+	<div id="stage"></div>
+	<div style="text-align: center">
+		<input type="button" value="冒泡排序" id="bubble">
+		<input type="button" value="选择排序" id="choose">
+		<input type="button" value="快速排序" id="quick">
+	</div>
+
+	<script>
+		var width = 500;
+		var height = 300;
+		var stage = document.getElementById('stage');
+
+		var arr = [2,13,5,10,16,3,8,14,1,6,9,11,7,12,15,4];
+		
+		var timer;
+
+		function render(arr) {
+			var len = arr.length;
+			var max = Math.max.apply(null, arr);
+			var html = '';
+			var w = (width/len);
+			arr.forEach((e, i) => html += `<div style="width: ${w - 5}px; height: ${(e/max)*height}px; left: ${w*i}px">${e}</div>`);
+			stage.innerHTML = html;
+		}
+
+
+
+		document.getElementById('bubble').onclick = function() {
+			var tmp = [];
+			bubble(arr.slice(0), function(arr) {
+				tmp.push( arr.slice(0) );
+			});
+
+			animate( tmp );
+		}
+
+		document.getElementById('choose').onclick = function() {
+			var tmp = [];
+			choose(arr.slice(0), function(arr) {
+				tmp.push( arr.slice(0) );
+			});
+
+			animate( tmp );
+		}
+
+		document.getElementById('quick').onclick = function() {
+			var tmp = [];
+			quick(arr.slice(0), 0, arr.length - 1, function(arr) {
+				tmp.push( arr.slice(0) );
+			});
+
+			animate( tmp, 200 );
+		}
+
+
+		function animate(tmp, t) {
+			if(timer) clearInterval(timer);
+			var i = 0
+			timer = setInterval(function() {
+				render( tmp[i++] );
+				if( i === tmp.length ) clearInterval(timer);
+			}, t || 300);
+		}
+
+
+
+
+
+
+		function bubble(arr, fn) {
+			fn && fn(arr);
+			for(var i = arr.length - 1, j, tmp; i > 0; i--) {
+				for(j = 0; j < i; j++) {
+					if( arr[j] > arr[j+1] ) {
+						tmp = arr[j];
+						arr[j] = arr[j+1];
+						arr[j+1] = tmp;
+
+						fn && fn(arr);												
+					}
+				}
+			}
+		}
+
+
+		function choose(arr, fn) {
+			fn && fn(arr);
+			var index, value;
+			for(var i = arr.length - 1, j, tmp; i > 0; i--) {
+				index = 0, value = arr[0];		// 每次必须更新最大数最第一个元素, 然后一步步刷新
+				for(j = 1; j <= i; j++) {
+					if(arr[j] > value) {
+						index = j;
+						value = arr[j];
+					}
+				}
+				tmp = value;
+				arr[index] = arr[i];
+				arr[i] = value;
+
+				fn && fn(arr);
+			}
+		}
+
+		function quick(arr, left, right, fn) {
+			fn && fn(arr);
+			var i = left, j = right, base = arr[left], tmp;
+
+			while(i < j) {
+				while( arr[j] >= base && i < j ) j--;		// 基准值选择左边的则必须先从右边查找
+				while( arr[i] <= base && i < j ) i++;
+				
+				tmp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = tmp;
+
+				fn && fn(arr);
+			}
+			arr[left] = arr[i];
+			arr[i] = base;
+
+			fn && fn(arr);
+
+			if(left < i - 1) arguments.callee(arr, left, i - 1, fn);
+			if(right > i + 1) arguments.callee(arr, i + 1, right, fn);
+		}
+	</script>
+</body>
+</html>
