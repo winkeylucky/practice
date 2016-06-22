@@ -11,10 +11,15 @@ function addDelimiter(str) {
 	}
 	return res.join('');
 }
+
+addDelimiter(12345678);  // "12,345,678"
 ```
 
 用正则可以更优雅一点:
 ```js
-str = String(str).replace(/(?!^)(?=(\d{3})+$)/g, ',')
+var num = 12345678;
+String(num).replace(/(?!^)(?=(\d{3})+$)/g, ',');
+
+// "12,345,678"
 ```
 
