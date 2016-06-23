@@ -74,7 +74,33 @@ function sort(arr, left, right) {
 }
 
 quickSort(arr);
+```
 
+或者这样:
+```js
+function quickSort( arr ) {
+	sort.call(arr, 0, arr.length - 1);
+	return arr;
+}
+
+function sort(a, b) {
+	var i = a, j = b, tmp, base = this[a];
+	while(i < j) {
+		while(this[j] >= base && i < j) j--;
+		while(this[i] <= base && i < j) i++;
+
+		tmp = this[i];
+		this[i] = this[j];
+		this[j] = tmp;
+	}
+	this[a] = this[i];
+	this[i] = base;
+
+	if(a < i - 1) arguments.callee.call(this, a, i - 1);
+	if(b > i + 1) arguments.callee.call(this, i + 1, b);
+}
+
+quickSort([2,5,4,3,8,1,6,9,7,0]);  // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 
