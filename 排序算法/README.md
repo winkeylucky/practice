@@ -11,7 +11,7 @@
 ```js
 var arr = [2,5,4,3,8,1,6,9,7,0];
 
-for(var i = arr.length - 1, j, tmp; i > 0; i--) {
+for(var i = arr.length - 1, j, tmp; i >= 1; i--) {	//外层循环只需要执行arr.length - 1次. 两个元素只需交换1次, 3个元素只需交换2次
 	for(j = 0; j < i; j++) {
 		if( arr[j] > arr[j+1] ) {
 			tmp = arr[j];
@@ -28,8 +28,8 @@ for(var i = arr.length - 1, j, tmp; i > 0; i--) {
 ```js
 var arr = [2,5,4,3,8,1,6,9,7,0];
 
-var index, value;
-for(var i = arr.length - 1, j, tmp; i > 0; i--) {
+var index, value, i, j;
+for(i = arr.length - 1; i >= 1; i--) {
 	index = 0, value = arr[0];		// 每次必须更新最大数最第一个元素, 然后一步步刷新
 	for(j = 1; j <= i; j++) {
 		if(arr[j] > value) {
@@ -37,7 +37,6 @@ for(var i = arr.length - 1, j, tmp; i > 0; i--) {
 			value = arr[j];
 		}
 	}
-	tmp = value;
 	arr[index] = arr[i];
 	arr[i] = value;
 }
