@@ -87,7 +87,7 @@
 
 		function bubble(arr, fn) {
 			fn && fn(arr);
-			for(var i = arr.length - 1, j, tmp; i > 0; i--) {
+			for(var i = arr.length - 1, j, tmp; i >= 1; i--) {
 				for(j = 0; j < i; j++) {
 					if( arr[j] > arr[j+1] ) {
 						tmp = arr[j];
@@ -104,8 +104,8 @@
 		function choose(arr, fn) {
 			fn && fn(arr);
 			var index, value;
-			for(var i = arr.length - 1, j, tmp; i >= 0; i--) {
-				index = 0, value = arr[0];		// 每次必须更新最大数最第一个元素, 然后一步步刷新
+			for(var i = arr.length - 1, j, tmp; i >= 1; i--) {
+				index = 0, value = arr[0];
 				for(j = 1; j <= i; j++) {
 					if(arr[j] > value) {
 						index = j;
@@ -124,7 +124,7 @@
 			var i = left, j = right, base = arr[left], tmp;
 
 			while(i < j) {
-				while( arr[j] >= base && i < j ) j--;		// 基准值选择左边的则必须先从右边查找
+				while( arr[j] >= base && i < j ) j--;
 				while( arr[i] <= base && i < j ) i++;
 				
 				tmp = arr[i];
