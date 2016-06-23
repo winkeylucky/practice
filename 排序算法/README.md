@@ -11,7 +11,8 @@
 ```js
 var arr = [2,5,4,3,8,1,6,9,7,0];
 
-for(var i = arr.length - 1, j, tmp; i >= 1; i--) {	//外层循环只需要执行arr.length - 1次. 两个元素只需交换1次, 3个元素只需交换2次
+//外层循环只需要执行arr.length - 1次. 2个元素交换1次, 3个元素交换2次
+for(var i = arr.length - 1, j, tmp; i >= 1; i--) {
 	for(j = 0; j < i; j++) {
 		if( arr[j] > arr[j+1] ) {
 			tmp = arr[j];
