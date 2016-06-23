@@ -6,7 +6,7 @@
 function addDelimiter(str) {
 	var str = String(str), tmp;
 	for(var len = str.length - 1, i = 0, res = []; i <= len; i++) {
-		tmp = str.charAt(len - i);								//用tmp暂存, 防止 -123456789 添加为 -,123,456,789
+		tmp = str.charAt(len - i);		//用tmp暂存, 防止 -123456789 添加为 -,123,456,789
 		if( i > 0 && i%3 === 0 && +tmp >= 0 ) res.unshift(',');
 		res.unshift( tmp );
 	}
@@ -33,7 +33,7 @@ addDelimiter(-12345678);   // "-12,345,678"
 ```js
 '12345678'.replace(/(?!^)(?=(\d{3})+$)/g, ',');  	// "12,345,678"
 
-'-123456789'.replace(/(?!^)(?=(\d{3})+$)/g, ','); // "-,123,456,789"   问题来了
+'-123456789'.replace(/(?!^)(?=(\d{3})+$)/g, ','); // "-,123,456,789" 问题来了
 
 // 由于js的正则没有后向引用, 只能包装一层, 如下:
 '-123456789'.replace(/(\-?)(\d+)/, function($0, $1, $2) {
