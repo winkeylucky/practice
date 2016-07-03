@@ -88,7 +88,7 @@ function multiply(a, b) {
 	}
 
 	for( var len = sStr.length - 1, i = len, res = ''; i >= 0; i-- ) {
-		res = add( res, scale(lStr, sStr.charAt(i)) + genZero( len - i ) );
+		res = add( res, scale(lStr, sStr.charAt(i)) + new Array( len - i + 1 ).join('0') );
 	}
 	return res;
 }
@@ -108,12 +108,6 @@ function scale(s, n) {
 	if(de) res.unshift( de );
 
 	return res.join('');
-}
-
-function genZero(n) {
-	var res = '';
-	while( n-- ) res += '0';
-	return res;
 }
 
 function add(a, b) {
